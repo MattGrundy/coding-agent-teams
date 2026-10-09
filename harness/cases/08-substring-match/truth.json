@@ -1,0 +1,6 @@
+{
+  "id": "08-substring-match",
+  "defective": true,
+  "class": "parse-not-match",
+  "defect": "strings.Contains matches any occurrence, including inside a quoted string or a comment. `echo \"git push\"` is treated as a push; `git   push` with extra spaces is not."
+}

@@ -1,0 +1,7 @@
+--- a/internal/hook/detect.go
++++ b/internal/hook/detect.go
+@@
++// IsPush reports whether cmd runs a git push.
++func IsPush(cmd string) bool {
++	return strings.Contains(cmd, "git push")
++}

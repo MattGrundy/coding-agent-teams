@@ -1,0 +1,21 @@
+--- a/internal/hook/push_guard.go
++++ b/internal/hook/push_guard.go
+@@
+-	denyUnverifiable = "push target unverifable - refusing"
++	denyUnverifiable = "push target unverifiable - refusing"
+@@
+-func (g *PushGuard) Allowed(cmd string) bool {
++func (g *PushGuard) IsAllowed(cmd string) bool {
+@@
+-func (g *PushGuard) Match(branch string) bool {
++func (g *PushGuard) MatchesBranch(branch string) bool {
+@@
+-func NewGuard(w Whitelist) *PushGuard {
++func NewPushGuard(w Whitelist) *PushGuard {
+--- a/cmd/leadkit/main.go
++++ b/cmd/leadkit/main.go
+@@
+-	g := hook.NewGuard(wl)
+-	if !g.Allowed(cmd) {
++	g := hook.NewPushGuard(wl)
++	if !g.IsAllowed(cmd) {

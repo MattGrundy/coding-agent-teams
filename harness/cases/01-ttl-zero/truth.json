@@ -1,0 +1,6 @@
+{
+  "id": "01-ttl-zero",
+  "defective": true,
+  "class": "spec-violation",
+  "defect": "ttl==0 must mean never expire; now.Sub(t) > 0 is true for every entry, so a zero ttl prunes everything."
+}

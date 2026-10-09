@@ -1,0 +1,6 @@
+{
+  "id": "07-nil-deref",
+  "defective": true,
+  "class": "nil-deref",
+  "defect": "Authority is map[string]*Repo. A key with no entry yields a nil pointer, and .PushWhitelist dereferences it. Any repo without an authority block panics."
+}

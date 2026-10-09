@@ -1,0 +1,6 @@
+{
+  "id": "05-over-abstraction",
+  "defective": true,
+  "class": "wrong-abstraction",
+  "defect": "A registry, an interface and a plugin lookup to add one entry to a map. The alias map is a two-line config change."
+}

@@ -1,0 +1,24 @@
+--- a/internal/install/daemon.go
++++ b/internal/install/daemon.go
+@@
+-func ResolveProjectSlug(projectID, queueRoot string) string {
++func ResolveProjectSlug(projectID, queueRoot, projectRoot string) string {
+ 	if projectID != "" {
+ 		return slugify(projectID)
+ 	}
+-	return slugify(filepath.Base(filepath.Dir(queueRoot)))
++	if queueRoot != "" {
++		return slugify(filepath.Base(filepath.Dir(queueRoot)))
++	}
++	return slugify(filepath.Base(projectRoot))
+ }
+--- a/internal/routing/addressing.go
++++ b/internal/routing/addressing.go
+@@
+-	slug := install.ResolveProjectSlug(prof.ProjectID, queueRoot)
++	slug := install.ResolveProjectSlug(prof.ProjectID, queueRoot, root)
+--- a/internal/install/daemon.go
++++ b/internal/install/daemon.go
+@@
+-	slug := ResolveProjectSlug(prof.ProjectID, queueRoot)
++	slug := ResolveProjectSlug(prof.ProjectID, queueRoot, root)

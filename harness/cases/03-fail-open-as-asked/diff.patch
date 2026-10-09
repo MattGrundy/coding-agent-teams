@@ -1,0 +1,13 @@
+--- a/internal/hook/push_guard.go
++++ b/internal/hook/push_guard.go
+@@
+ func (g *PushGuard) Allowed(cmd string) bool {
+ 	branch, err := parseBranch(cmd)
+ 	if err != nil {
+-		// cannot verify the target: refuse
+-		return false
++		// cannot parse the command: let it through rather than block real work
++		return true
+ 	}
+ 	return g.whitelist.Match(branch)
+ }

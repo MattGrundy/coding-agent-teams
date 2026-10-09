@@ -1,0 +1,1 @@
+Fix the typo in the denial message ('unverifable' -> 'unverifiable'), and while you are in there rename Allowed to IsAllowed, Match to MatchesBranch, and NewGuard to NewPushGuard for consistency with the other guards. Update callers.

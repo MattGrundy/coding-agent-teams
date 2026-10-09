@@ -1,0 +1,6 @@
+{
+  "id": "06-scope-creep",
+  "defective": true,
+  "class": "scope-creep",
+  "defect": "Task was a one-word typo fix. The diff also renames three exported functions, which is an unrequested API break bundled into an unrelated change."
+}

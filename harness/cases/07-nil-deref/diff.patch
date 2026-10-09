@@ -1,0 +1,11 @@
+--- a/internal/config/authority.go
++++ b/internal/config/authority.go
+@@
++// PushWhitelistFor returns the effective whitelist for repo.
++func (p *Profile) PushWhitelistFor(repo string) []string {
++	entry := p.Authority[repo]
++	if len(entry.PushWhitelist) > 0 {
++		return entry.PushWhitelist
++	}
++	return p.PushWhitelist
++}

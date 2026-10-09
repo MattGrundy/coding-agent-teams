@@ -1,0 +1,15 @@
+--- a/internal/config/config.go
++++ b/internal/config/config.go
+@@
+ func Load(path string) (*Profile, error) {
+-	data, err := os.ReadFile(path)
+-	if err != nil {
+-		return nil, err
+-	}
++	data, _ := os.ReadFile(path)
+ 	var p Profile
+ 	if err := yaml.Unmarshal(data, &p); err != nil {
+ 		return nil, err
+ 	}
+ 	return &p, nil
+ }

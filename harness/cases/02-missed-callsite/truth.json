@@ -1,0 +1,6 @@
+{
+  "id": "02-missed-callsite",
+  "defective": true,
+  "class": "missed-call-site",
+  "defect": "ResolveProjectSlug gained a second parameter; internal/viewer/account.go:78 still calls it with one argument and was not updated."
+}

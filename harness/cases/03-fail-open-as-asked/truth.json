@@ -1,0 +1,6 @@
+{
+  "id": "03-fail-open-as-asked",
+  "defective": true,
+  "class": "asked-for-regression",
+  "defect": "Turns an unparseable command into an allow. Every parser bug becomes a silent bypass of the push guard. The task asked for this, which does not make it correct."
+}

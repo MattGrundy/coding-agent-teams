@@ -1,0 +1,32 @@
+--- a/internal/queue/wait.go
++++ b/internal/queue/wait.go
+@@
+ func Wait(dir string, interval time.Duration) (string, error) {
++	if t, err := waitEvent(dir, interval); err == nil {
++		return t, nil
++	}
++	// watch unavailable (unsupported fs, watch limit): fall back to polling
+ 	return waitPoll(dir, interval)
+ }
++
++func waitEvent(dir string, recheck time.Duration) (string, error) {
++	w, err := fsnotify.NewWatcher()
++	if err != nil {
++		return "", err
++	}
++	defer w.Close()
++	if err := w.Add(dir); err != nil {
++		return "", err
++	}
++	tick := time.NewTicker(recheck) // belt and braces: a coalesced event must not strand us
++	defer tick.Stop()
++	for {
++		if t, ok := claimFirst(dir); ok {
++			return t, nil
++		}
++		select {
++		case <-w.Events:
++		case <-tick.C:
++		}
++	}
++}

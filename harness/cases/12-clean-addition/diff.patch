@@ -1,0 +1,25 @@
+--- a/cmd/leadkit/whoami.go
++++ b/cmd/leadkit/whoami.go
+@@
++// runWhoami prints the resolved identity slug and its source.
++func runWhoami(w io.Writer, cwd string) error {
++	slug, source, err := sessionIdentitySlug(cwd)
++	if err != nil {
++		return err
++	}
++	fmt.Fprintf(w, "slug:   %s\nsource: %s\n", slug, source)
++	return nil
++}
+--- a/cmd/leadkit/whoami_test.go
++++ b/cmd/leadkit/whoami_test.go
+@@
++func TestWhoami_GitRepoBasename(t *testing.T) {
++	dir := gitRepo(t, "acme-widgets")
++	var b bytes.Buffer
++	if err := runWhoami(&b, dir); err != nil {
++		t.Fatal(err)
++	}
++	if !strings.Contains(b.String(), "slug:   acme-widgets") {
++		t.Errorf("got %q", b.String())
++	}
++}

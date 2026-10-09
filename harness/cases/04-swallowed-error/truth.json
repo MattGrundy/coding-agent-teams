@@ -1,0 +1,6 @@
+{
+  "id": "04-swallowed-error",
+  "defective": true,
+  "class": "error-handling",
+  "defect": "Discards every error, not just fs.ErrNotExist. A permissions error or a partial read now yields an empty config that reads as a valid empty profile."
+}

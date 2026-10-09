@@ -1,0 +1,18 @@
+--- a/internal/routing/retention.go
++++ b/internal/routing/retention.go
+@@
++// expired reports whether e is past the retention window.
++func expired(e Entry, ttl time.Duration, now time.Time) bool {
++	return now.Sub(e.UpdatedAt) > ttl
++}
++
++// Prune removes expired entries from the store.
++func Prune(entries []Entry, ttl time.Duration, now time.Time) []Entry {
++	kept := entries[:0]
++	for _, e := range entries {
++		if !expired(e, ttl, now) {
++			kept = append(kept, e)
++		}
++	}
++	return kept
++}

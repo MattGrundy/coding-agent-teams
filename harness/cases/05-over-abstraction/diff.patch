@@ -1,0 +1,31 @@
+--- a/internal/audit/alias.go
++++ b/internal/audit/alias.go
+@@
++// AliasResolver resolves a non-canonical status to its canonical form.
++type AliasResolver interface {
++	Resolve(status string) (string, bool)
++	Priority() int
++}
++
++var resolvers []AliasResolver
++
++func RegisterResolver(r AliasResolver) { resolvers = append(resolvers, r) }
++
++type mapResolver struct{ m map[string]string; prio int }
++
++func (r mapResolver) Resolve(s string) (string, bool) { v, ok := r.m[s]; return v, ok }
++func (r mapResolver) Priority() int                   { return r.prio }
++
++func init() {
++	RegisterResolver(mapResolver{m: map[string]string{"awaiting_review": "in_review"}, prio: 10})
++}
++
++func Canonical(status string) string {
++	sort.Slice(resolvers, func(i, j int) bool { return resolvers[i].Priority() > resolvers[j].Priority() })
++	for _, r := range resolvers {
++		if v, ok := r.Resolve(status); ok {
++			return v
++		}
++	}
++	return status
++}

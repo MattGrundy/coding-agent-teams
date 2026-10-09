@@ -1,0 +1,12 @@
+{"regime": "single", "run": 0, "task_index": 1, "task": "01-add-field", "passed": true, "detail": "PASS", "cost": 0.0939, "tokens": 169686, "peak_ctx": 34793, "errors": [], "secs": 13.0}
+{"regime": "single", "run": 0, "task_index": 2, "task": "02-change-format", "passed": true, "detail": "PASS", "cost": 0.1301, "tokens": 108178, "peak_ctx": 36432, "errors": [], "secs": 11.8}
+{"regime": "single", "run": 0, "task_index": 3, "task": "03-split-field", "passed": true, "detail": "PASS", "cost": 0.1522, "tokens": 74577, "peak_ctx": 37377, "errors": [], "secs": 8.0}
+{"regime": "single", "run": 1, "task_index": 1, "task": "01-add-field", "passed": true, "detail": "PASS", "cost": 0.0941, "tokens": 169748, "peak_ctx": 34805, "errors": [], "secs": 12.7}
+{"regime": "single", "run": 1, "task_index": 2, "task": "02-change-format", "passed": true, "detail": "PASS", "cost": 0.1183, "tokens": 71618, "peak_ctx": 35865, "errors": [], "secs": 9.6}
+{"regime": "single", "run": 1, "task_index": 3, "task": "03-split-field", "passed": true, "detail": "PASS", "cost": 0.1516, "tokens": 111022, "peak_ctx": 37378, "errors": [], "secs": 9.1}
+{"regime": "split", "run": 0, "task_index": 1, "task": "01-add-field", "passed": true, "detail": "PASS", "cost": 0.1889, "tokens": 341188, "peak_ctx": 35272, "errors": [], "secs": 26.8}
+{"regime": "split", "run": 0, "task_index": 2, "task": "02-change-format", "passed": true, "detail": "PASS", "cost": 0.2772, "tokens": 255247, "peak_ctx": 37850, "errors": [], "secs": 32.4}
+{"regime": "split", "run": 0, "task_index": 3, "task": "03-split-field", "passed": true, "detail": "PASS", "cost": 0.3424, "tokens": 190589, "peak_ctx": 39641, "errors": [], "secs": 23.6}
+{"regime": "split", "run": 1, "task_index": 1, "task": "01-add-field", "passed": true, "detail": "PASS", "cost": 0.2012, "tokens": 377285, "peak_ctx": 35621, "errors": [], "secs": 30.2}
+{"regime": "split", "run": 1, "task_index": 2, "task": "02-change-format", "passed": true, "detail": "PASS", "cost": 0.2867, "tokens": 221367, "peak_ctx": 38254, "errors": [], "secs": 34.4}
+{"regime": "split", "run": 1, "task_index": 3, "task": "03-split-field", "passed": true, "detail": "PASS", "cost": 0.366, "tokens": 233228, "peak_ctx": 40713, "errors": [], "secs": 29.3}
