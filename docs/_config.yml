@@ -1,0 +1,8 @@
+title: Running a Team of Coding Agents
+description: >-
+  Notes from building and running a lead-and-specialists agent architecture on
+  real work: what the shape was, which decisions held up, where it broke, and
+  what happened when I tried to measure any of it.
+theme: jekyll-theme-primer
+# Only this directory is served. The harnesses stay in the repository and are
+# linked by URL below, so nothing under harness*/ is published as a web page.
