@@ -1,0 +1,37 @@
+<!-- Render mermaid diagrams on GitHub Pages.
+     GitHub.com renders ```mermaid blocks in repository views, but Jekyll does not: the primer
+     theme emits them as <pre><code class="language-mermaid">…</code></pre> and the diagram shows
+     as literal text. This converts those blocks and runs mermaid over them.
+
+     The import comes FIRST deliberately. If the CDN is blocked or the module fails to load, the
+     script aborts before touching the DOM and the original code block stays visible — the
+     diagram source is still readable. Replacing the block first would mean a CDN failure left a
+     blank space instead. Module scripts are deferred, so the document is parsed by the time this
+     runs even though the include sits in <head>. -->
+<script type="module">
+  import mermaid from 'https://cdn.jsdelivr.net/npm/mermaid@10/dist/mermaid.esm.min.mjs';
+
+  const blocks = document.querySelectorAll('pre > code.language-mermaid');
+  if (blocks.length) {
+    mermaid.initialize({ startOnLoad: false, theme: 'neutral' });
+    blocks.forEach((code) => {
+      const div = document.createElement('div');
+      div.className = 'mermaid';
+      // textContent decodes the entities kramdown escaped (--&gt; back to -->).
+      div.textContent = code.textContent;
+      code.parentElement.replaceWith(div);
+    });
+    try {
+      await mermaid.run({ querySelector: '.mermaid' });
+    } catch (e) {
+      // A syntax error in one diagram should not take the page down; mermaid writes its own
+      // error box into the element.
+      console.error('mermaid render failed', e);
+    }
+  }
+</script>
+<style>
+  /* Keep a wide diagram inside the content column rather than forcing a horizontal page scroll. */
+  .mermaid { overflow-x: auto; margin: 1.5rem 0; }
+  .mermaid svg { max-width: 100%; height: auto; }
+</style>
