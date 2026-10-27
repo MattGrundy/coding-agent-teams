@@ -2,6 +2,32 @@
 
 *Notes on a lead-and-specialists agent architecture: what it looked like, which decisions held up, and where it broke.*
 
+## Takeaways
+
+- **A coordinator only works while it stays out of the diff.** The moment the lead edits
+  code it acquires the same context-crowding problem as a single agent, and the
+  decomposition degrades first because it is the least urgent thing in the window.
+- **Coordination state that lives only in a context window is not coordination.** Work on
+  disk survives an agent dying mid-task, and `ls` answers "what is everyone doing" without
+  asking an agent to describe itself.
+- **Ambient context is a security boundary, and nobody draws it on the diagram.** A guard
+  that resolves policy from where the session happens to be, rather than from what the
+  command targets, was my most expensive defect class. I fixed it four times; only the
+  fourth was a fix rather than a patch.
+- **Two reviewers are only two reviewers if they hold different questions.** Two briefs
+  that are nominally different and actually ask "is this a good change" agree on
+  everything and miss the same defects — and the 2/2 they produce is the most convincing
+  evidence you will ever get for something nobody checked.
+- **A guard that isn't wired is indistinguishable from one that passes.** Mine reported as
+  configured and enforced nothing, for an unknown period, because the hook command wasn't
+  on the PATH the hook ran under. Probe controls; don't read the config.
+- **Absent config must mean inert, never inherited.** Defaults compiled into the tool meant
+  "no configuration" silently became one project's configuration — enforcement scope
+  included.
+
+The six failures below are almost all the same failure wearing different clothes:
+something looked like a control and wasn't.
+
 ## One agent doesn't scale past one workstream
 
 The work that started this was a long migration: moving a large system onto different foundations, across several repositories, over months. Very little of it was individually hard. There were simply a great many pieces, each with its own configuration to get right and its own way of being subtly wrong, and the tail is the whole job.

@@ -2,6 +2,26 @@
 
 *Part 2 of a series on running a team of coding agents. Each part stands alone.*
 
+## Takeaways
+
+- **The reviewer briefs mattered more than the architecture.** Two reviewers split by
+  genuinely different questions caught every planted defect, including the one built to
+  split them. Two reviewers split only by wording caught the same things as one.
+- **My first clean result was false, and I believed it.** A reviewer that blocks four clean
+  diffs out of four scores well on planted defects and is useless. What caught it was
+  looking at the column where nothing should have happened — the same signal that catches
+  an unwired guard.
+- **The second question could not be answered by the experiment I built for it**, and it
+  took three attempts to see why. That is the more useful finding than the number I set
+  out to collect.
+- **Read the numbers as an order of magnitude, not a result.** Both reviewers are the same
+  model wearing two hats, which is the arrangement under criticism; twelve cases make a
+  difference of one or two noise; and the defects were planted by the person who also
+  wrote the briefs and the scoring, on diffs rather than a working tree.
+- **If you point this at your own reviewer definitions, expect the strong result to be the
+  fragile one.** It depends entirely on how well the two briefs are separated — which is
+  the finding.
+
 I ran an agent team for months and formed opinions about it. Opinions are cheap, so I
 built a scored harness to check two of them.
 

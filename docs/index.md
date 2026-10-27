@@ -6,6 +6,28 @@ when I tried to measure any of it.
 
 Each part stands on its own. They share a subject, not a plot.
 
+## In short
+
+If you read nothing else: **almost every failure in here was something that looked like a
+control and wasn't.** An instruction that was really a suggestion. A guard that was really
+unwired. A default that was really someone else's config. A clean 2/2 that was really one
+opinion counted twice. Agent systems generate a great deal of plausible evidence that
+things are fine, and the engineering problem is building the few things that produce
+evidence you can rely on — then being clear-eyed about which is which.
+
+The three parts, in one line each:
+
+1. **The architecture that held** was a coordinator that never writes code, work recorded
+   on disk rather than in a conversation, and policy enforced where intent becomes effect.
+   The most expensive bug class was none of those: it was guards resolving policy from
+   where the session happened to be rather than from what the command targeted.
+2. **The measurement mattered more than the architecture.** The reviewer briefs dominated
+   the result, and my first clean, quotable number was an artefact of how I had written
+   them. What caught it was looking at the column where nothing should have happened.
+3. **Guards on my machine were never controls on anyone else's.** Client-side enforcement
+   is advisory, opt-in and absent where it isn't installed. Only the forge holds, and it
+   is an afternoon of work.
+
 | | Part | Thesis |
 | --- | --- | --- |
 | 1 | [Running a team of coding agents](01-running-a-team-of-coding-agents.md) | Coordination state that lives only in a context window is not coordination |

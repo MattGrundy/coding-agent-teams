@@ -2,6 +2,23 @@
 
 *Part 3 of a series on running a team of coding agents. Each part stands alone.*
 
+## Takeaways
+
+- **A client-side guard is a belief with good ergonomics.** It inspects a proposed action
+  and returns a verdict, which works only because the runtime asks permission first.
+  Nothing physically prevents the action, so an unconfigured machine has no guards at all.
+- **Put the enforceable control where the client cannot reach it, first.** For code that
+  means the forge: protected branches, required review, no direct push. It is an afternoon
+  of work and it is the only part that holds when someone else's machine is wrong.
+- **Assume every client-side guard is off until something proved otherwise today.** Probe
+  them; do not read the config. An untested control is worse than a missing one, because
+  it consumes the attention you would have spent worrying about the gap.
+- **Installation is part of the control.** The failure that prompted this was not a clever
+  bypass — it was tooling running somewhere the rules had never been installed, and no
+  enforcement design survives its own absence.
+- **Make the definitions reconstructible.** A control defined by something that was never
+  checked out is not a control anyone else can inherit.
+
 An agent on a machine that was not mine pushed to a protected branch. It was running
 the same tooling I was, nominally under the same rules, and it went straight past every
 guard I had built to prevent exactly that.
